@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CommandTower</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="content_description_sword_axe_shield">An image of a sword, axe, and shield.</string>
+
+
+</resources>
