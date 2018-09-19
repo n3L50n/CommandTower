@@ -2,6 +2,7 @@ package com.nodecoyote.commandtower
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -31,10 +32,11 @@ class FormatFragment : Fragment() {
 
     private fun setUpRecycler() {
         val formatRecyclerView: RecyclerView = formatRecycler
-        val formatLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        val formatGridLayoutManager: RecyclerView.LayoutManager = GridLayoutManager(context, 2)
         val formatAdapter = FormatAdapter()
-        formatRecyclerView.layoutManager = formatLayoutManager
+        formatRecyclerView.layoutManager = formatGridLayoutManager
         formatRecyclerView.adapter = formatAdapter
+        formatRecyclerView.addItemDecoration(Decoration())
     }
 
 }

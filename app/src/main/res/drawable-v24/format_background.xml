@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <corners android:radius="10dp" />
     <stroke
-        android:color="@color/player_selected_color"
+        android:color="@color/format_color_state_list"
         android:width="2dp" />
+    <solid android:color="@color/format_color_background_state_list"/>
 </shape>
