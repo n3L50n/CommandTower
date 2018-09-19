@@ -16,6 +16,10 @@
             android:id="@+id/formatContainer"
             layout="@layout/fragment_format" />
 
+        <include
+            android:id="@+id/playerContainer"
+            layout="@layout/fragment_player" />
+
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigation"
             android:layout_width="0dp"

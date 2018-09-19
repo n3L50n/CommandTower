@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 val fragment = FormatFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.formatContainer, fragment).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.formatContainer, fragment, Navigation.Formats.name).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {

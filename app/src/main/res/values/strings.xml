@@ -4,5 +4,9 @@
     <string name="title_dashboard">Friends</string>
     <string name="title_notifications">Events</string>
 
+    <string name="create">Create</string>
+    <string name="create_player">Create a Player</string>
+
+    <!--Content Descriptions-->
     <string name="content_description_sword_axe_shield">An image of a sword, axe, and shield.</string>
 </resources>

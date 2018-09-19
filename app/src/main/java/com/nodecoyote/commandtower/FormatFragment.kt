@@ -2,13 +2,13 @@ package com.nodecoyote.commandtower
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kotlinx.android.synthetic.main.cell_format.view.*
 import kotlinx.android.synthetic.main.fragment_format.*
 
@@ -32,8 +32,8 @@ class FormatFragment : Fragment() {
 
     private fun setUpRecycler() {
         val formatRecyclerView: RecyclerView = formatRecycler
-        val formatGridLayoutManager: RecyclerView.LayoutManager = GridLayoutManager(context, 2)
-        val formatAdapter = FormatAdapter()
+        val formatGridLayoutManager = GridLayoutManager(context, 2)
+        val formatAdapter = FormatAdapter(supportFragmentManager = activity!!.supportFragmentManager)
         formatRecyclerView.layoutManager = formatGridLayoutManager
         formatRecyclerView.adapter = formatAdapter
         formatRecyclerView.addItemDecoration(Decoration())
@@ -41,10 +41,10 @@ class FormatFragment : Fragment() {
 
 }
 
-class FormatAdapter : RecyclerView.Adapter<FormatViewHolder>() {
+class FormatAdapter(supportFragmentManager: FragmentManager) : RecyclerView.Adapter<FormatViewHolder>() {
 
     private val formats = listOf("Classic", "Brawl", "Commander", "Custom")
-
+    private val _fragmentManager = supportFragmentManager
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FormatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cell_format, parent, false)
@@ -56,14 +56,23 @@ class FormatAdapter : RecyclerView.Adapter<FormatViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FormatViewHolder, position: Int) {
-        holder.bindView(formats[position])
+        holder.bindView(formats[position], _fragmentManager)
     }
 
 }
 
 class FormatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bindView(format: String) {
+    fun bindView(format: String, supportFragmentManager: FragmentManager) {
         itemView.formatTitle.text = format
+        itemView.formatItemContainer.setOnClickListener {
+
+            val fragment = PlayerListFragment()
+            supportFragmentManager.beginTransaction()
+                    .remove(supportFragmentManager.findFragmentByTag(Navigation.Formats.name))
+                    .replace(R.id.playerContainer, fragment, Navigation.PlayerList.name)
+                    .commit()
+            Toast.makeText(itemView.context, "Clicked $format", Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/player_list_background"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:src="@drawable/pyromancer_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/playerName"
+        android:gravity="center"
+        android:text="FrederickVon Museleim"
+        android:layout_width="match_parent"
+        android:layout_height="75dp" />
+
+</android.support.constraint.ConstraintLayout>

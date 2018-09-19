@@ -5,5 +5,5 @@
     <stroke
         android:color="@color/format_color_state_list"
         android:width="2dp" />
-    <solid android:color="@color/format_color_background_state_list"/>
+    <solid android:color="@color/player_list_color_background_state_list"/>
 </shape>
