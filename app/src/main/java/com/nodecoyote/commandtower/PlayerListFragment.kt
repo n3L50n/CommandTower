@@ -1,16 +1,9 @@
 package com.nodecoyote.commandtower
 
-import android.graphics.Point
-import android.graphics.PointF
-import android.graphics.Rect
 import android.os.Bundle
-import android.support.animation.DynamicAnimation
-import android.support.animation.SpringAnimation
-import android.support.animation.SpringForce
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,29 +23,6 @@ class PlayerListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
-        val point = Point()
-        activity?.windowManager?.defaultDisplay?.getSize(point)
-        val x = point.x
-        val y = point.y
-
-        val spring = SpringForce(850.57f)
-                .setDampingRatio(SpringForce.DAMPING_RATIO_MEDIUM_BOUNCY)
-                .setStiffness(SpringForce.STIFFNESS_LOW)
-
-        Log.v("SYYSTEM"," SYSTEM: ::: $x $y ")
-
-        val xAnim = SpringAnimation(add_player_button_layout, DynamicAnimation.X)
-                .setStartValue(x.toFloat())
-                .setSpring(spring)
-
-        val yAnim = SpringAnimation(add_player_button_layout, DynamicAnimation.Y)
-                .setStartValue(y.toFloat())
-                .setSpring(spring)
-
-        xAnim.start()
-        yAnim.start()
-        add_player_button_layout.visibility = View.VISIBLE
-
     }
 
     private fun setUpRecycler() {
