@@ -4,8 +4,12 @@
     <string name="title_dashboard">Friends</string>
     <string name="title_notifications">Events</string>
 
+    <!--Main Button -->
     <string name="create">Create</string>
     <string name="create_player">Create a Player</string>
+    <string name="create_this_player">Create this Player</string>
+    <string name="start_game">Start Game</string>
+    <string name="end_game">End Game</string>
 
     <!--Content Descriptions-->
     <string name="content_description_sword_axe_shield">An image of a sword, axe, and shield.</string>

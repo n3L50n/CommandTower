@@ -5,14 +5,13 @@ import android.graphics.PointF
 import android.os.Build
 import android.os.Bundle
 import android.support.animation.DynamicAnimation
+import android.support.animation.FlingAnimation
 import android.support.animation.SpringAnimation
 import android.support.animation.SpringForce
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewAnimationUtils
+import android.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main_button.*
 
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private val _tag = "MainActivity"
 
-    private var mMainButtonPosition = 850.57f
     private var mMainButtonX: Float = 0f
     private var mMainButtonY: Float = 0f
 
@@ -55,110 +53,67 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val point = Point()
-        windowManager?.defaultDisplay?.getSize(point)
-        mMainButtonX = point.x.toFloat()
-        mMainButtonY = point.x.toFloat()
-
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         animateMainButton()
 
         setUpTouchHandler()
     }
 
-    private fun createNewPlayer(){
+    private fun setUpTouchHandler(){
 
-        val itemView = main_button_container
-        val factor = 2
+        val gestureListener = object : GestureDetector.SimpleOnGestureListener() {
 
-        val finalRadius = Math.hypot(itemView.width.toDouble(), itemView.height.toDouble()).toInt()
-
-        if (Build.VERSION.SDK_INT >= 21) {
-
-            val animator = ViewAnimationUtils.createCircularReveal (
-                    itemView,
-                    itemView.width / factor,
-                    itemView.height / factor,
-                    0f,
-                    finalRadius.toFloat()
-            )
-            animator.start()
-        }
-
-        supportFragmentManager.fragments.forEach { fragment ->
-            if (fragment.tag == Navigation.CreatePlayer.name) {
-                return@forEach
+            override fun onDown(e: MotionEvent?): Boolean {
+                return true
             }
-            supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.createPlayerContainer, CreatePlayerFragment(), Navigation.CreatePlayer.name)
-                    .commit()
+
+            override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+
+                flingAnimationX.setStartVelocity(velocityX)
+                flingAnimationY.setStartVelocity(velocityY)
+
+                flingAnimationX.start()
+                flingAnimationY.start()
+
+                return true
+            }
         }
 
-        createPlayerContainer.visibility = View.VISIBLE
+        val gestureDetector = GestureDetector(this, gestureListener)
 
+        main_button_container.setOnTouchListener { _, motionEvent ->
+            gestureDetector.onTouchEvent(motionEvent)
+        }
+
+        val point = Point()
+        windowManager?.defaultDisplay?.getSize(point)
+        mMainButtonX = point.x.toFloat()
+        mMainButtonY = point.x.toFloat()
+
+        main_button_container.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                flingAnimationX.setMinValue(0f).setMaxValue((mMainButtonX))
+                flingAnimationY.setMinValue(0f).setMaxValue((mMainButtonY))
+                main_button_container.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
     }
 
-    private fun setUpTouchHandler(){
-        main_button_container.setOnTouchListener { view, motionEvent ->
+    val flingAnimationX: FlingAnimation by lazy(LazyThreadSafetyMode.NONE) {
+        FlingAnimation(main_button_container, DynamicAnimation.TRANSLATION_X).setFriction(1.1f)
+    }
 
-            val f = PointF()
-
-            view.x
-            view.y
-
-            f.x = motionEvent.x
-            f.y = motionEvent.y
-            mMainButtonPosition = f.length()
-            mMainButtonX = motionEvent.rawX
-            mMainButtonY = motionEvent.rawY
-
-            Log.v(_tag, "::::::: ${view.x}${view.y}")
-
-            when(motionEvent.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    true
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    true
-                }
-                MotionEvent.ACTION_UP -> {
-                    Log.v(_tag, "Main position: $mMainButtonPosition")
-                    animateMainButton()
-                    createNewPlayer()
-                    true
-                }
-                else -> {
-                    true
-                }
-            }
-        }
+    val flingAnimationY: FlingAnimation by lazy(LazyThreadSafetyMode.NONE) {
+        FlingAnimation(main_button_container, DynamicAnimation.TRANSLATION_Y).setFriction(1.1f)
     }
 
     private fun animateMainButton(){
 
-        val spring = SpringForce(mMainButtonPosition)
-                .setDampingRatio(SpringForce.DAMPING_RATIO_MEDIUM_BOUNCY)
-                .setStiffness(SpringForce.STIFFNESS_LOW)
-
-        Log.v(_tag,"X:Y::: $mMainButtonX $mMainButtonY ")
-
-        val xAnim = SpringAnimation(main_button_container, DynamicAnimation.X)
-                .setStartValue(mMainButtonX)
-                .setSpring(spring)
-
-        val yAnim = SpringAnimation(main_button_container, DynamicAnimation.Y)
-                .setStartValue(mMainButtonY)
-                .setSpring(spring)
-
-        xAnim.start()
-        yAnim.start()
 
 
         supportFragmentManager
                 .beginTransaction()
                 .add(R.id.main_button_container, MainButtonFragment(), Navigation.MainButton.name)
-                .setCustomAnimations(R.anim.create_button_in, R.anim.create_button_out)
                 .commit()
 
         main_button_container.visibility = View.VISIBLE

@@ -2,7 +2,6 @@ package com.nodecoyote.commandtower
 
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,7 +19,6 @@ class CreatePlayerFragment: Fragment() {
         return inflater.inflate(R.layout.fragment_create_player, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         create_player_container_layout.isSelected = true
