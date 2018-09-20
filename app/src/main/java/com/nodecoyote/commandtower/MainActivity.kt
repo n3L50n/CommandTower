@@ -1,5 +1,6 @@
 package com.nodecoyote.commandtower
 
+import android.animation.ObjectAnimator
 import android.graphics.Point
 import android.graphics.PointF
 import android.os.Build
@@ -15,7 +16,7 @@ import android.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main_button.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainButtonService {
 
     private val _tag = "MainActivity"
 
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         setUpTouchHandler()
     }
 
-    private fun setUpTouchHandler(){
+    private fun setUpTouchHandler() {
 
         val gestureListener = object : GestureDetector.SimpleOnGestureListener() {
 
@@ -77,6 +78,20 @@ class MainActivity : AppCompatActivity() {
 
                 return true
             }
+
+            override fun onSingleTapUp(e: MotionEvent?): Boolean {
+
+                val createPlayerFragment = supportFragmentManager.findFragmentByTag(Navigation.CreatePlayer.name)
+                if (!supportFragmentManager.fragments.contains(createPlayerFragment)) {
+                    supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.createPlayerContainer, CreatePlayerFragment(), Navigation.CreatePlayer.name)
+                            .commit()
+                    createPlayerContainer.visibility = View.VISIBLE
+                }
+                //           mainButtonService.handleClick(MainButtonStatus.CreateAPlayer)
+                return super.onSingleTapUp(e)
+            }
         }
 
         val gestureDetector = GestureDetector(this, gestureListener)
@@ -88,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         val point = Point()
         windowManager?.defaultDisplay?.getSize(point)
         mMainButtonX = point.x.toFloat()
-        mMainButtonY = point.x.toFloat()
+        mMainButtonY = point.y.toFloat()
 
         main_button_container.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
@@ -107,14 +122,40 @@ class MainActivity : AppCompatActivity() {
         FlingAnimation(main_button_container, DynamicAnimation.TRANSLATION_Y).setFriction(1.1f)
     }
 
-    private fun animateMainButton(){
-
-
+    private fun animateMainButton() {
 
         supportFragmentManager
                 .beginTransaction()
                 .add(R.id.main_button_container, MainButtonFragment(), Navigation.MainButton.name)
+                .setCustomAnimations(R.animator.create_button_slow_in, R.animator.create_button_slow_out)
                 .commit()
+
+        val point = Point()
+        windowManager?.defaultDisplay?.getSize(point)
+        val screenWidth = point.x.toFloat()
+        val screenHeight = point.y.toFloat()
+
+        val xAnimator = ObjectAnimator.ofFloat(
+                main_button_container,
+                "translationX",
+                screenWidth,
+                screenWidth - (screenWidth/1.5f)
+
+        )
+
+        val yAnimator = ObjectAnimator.ofFloat(
+                main_button_container,
+                "translationY",
+
+                screenHeight,
+                screenHeight - (screenHeight/3)
+        )
+
+        yAnimator.duration = 1200
+        yAnimator.start()
+
+        xAnimator.duration = 1200
+        xAnimator.start()
 
         main_button_container.visibility = View.VISIBLE
 

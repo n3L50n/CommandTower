@@ -29,7 +29,7 @@ interface MainButton {
      */
     val status: MainButtonStatus
     val rxStatus: Flowable<MainButtonStatus>
-    fun handleClick()
+    fun handleClick(status: MainButtonStatus)
 }
 
 class MainButtonServiceImplementation: MainButton {
@@ -40,7 +40,7 @@ class MainButtonServiceImplementation: MainButton {
     override val status: MainButtonStatus
         get() = mRxStatus.value
 
-    override fun handleClick() {
+    override fun handleClick(status: MainButtonStatus) {
         when(status) {
             MainButtonStatus.CreateAPlayer -> {
 
@@ -101,7 +101,7 @@ class MainButtonFragment: Fragment(), MainButtonService {
             if (!activity.supportFragmentManager.fragments.contains(createPlayerFragment)) {
                 activity.supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.createPlayerContainer, CreatePlayerFragment(), Navigation.CreatePlayer.name)
+                        .replace(R.id.createPlayerContainer,    CreatePlayerFragment(), Navigation.CreatePlayer.name)
                         .commit()
                 createPlayerContainer.visibility = View.VISIBLE
             }

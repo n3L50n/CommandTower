@@ -21,6 +21,12 @@
             layout="@layout/fragment_player" />
 
         <include
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:id="@+id/createPlayerContainer"
             layout="@layout/fragment_create_player"
             android:visibility="invisible" />
@@ -39,9 +45,7 @@
 
         <include
             android:id="@+id/main_button_container"
-            layout="@layout/fragment_main_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            layout="@layout/fragment_main_button" />
 
 
     </android.support.constraint.ConstraintLayout>
