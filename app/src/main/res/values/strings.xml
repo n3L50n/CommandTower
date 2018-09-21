@@ -4,6 +4,23 @@
     <string name="title_dashboard">Friends</string>
     <string name="title_notifications">Events</string>
 
+    <string name="avatar_description">Choose an Avatar to get Started</string>
+    <string-array name="avatar_icons">
+        <item>Sword</item>
+        <item>Shield</item>
+        <item>Crown</item>
+        <item>Torch</item>
+        <item>Poison</item>
+        <item>Book</item>
+        <item>Hammer</item>
+        <item>Goggles</item>
+        <item>Scepter</item>
+        <item>Axe</item>
+        <item>Ring</item>
+        <item>Crossbow</item>
+    </string-array>
+
+
     <!--Main Button -->
     <string name="create">Create</string>
     <string name="create_player">Create a Player</string>

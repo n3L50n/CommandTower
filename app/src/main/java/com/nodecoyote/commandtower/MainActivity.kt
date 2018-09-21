@@ -121,6 +121,22 @@ class MainActivity : AppCompatActivity(), MainButtonService {
     val flingAnimationY: FlingAnimation by lazy(LazyThreadSafetyMode.NONE) {
         FlingAnimation(main_button_container, DynamicAnimation.TRANSLATION_Y).setFriction(1.1f)
     }
+//    //1
+//    val objectAnimator = ObjectAnimator.ofObject(
+//            frameLayout,
+//            "backgroundColor",
+//            ArgbEvaluator(),
+//            ContextCompat.getColor(this, R.color.background_from),
+//            ContextCompat.getColor(this, R.color.background_to)
+//    )
+//
+//// 2
+//    objectAnimator.repeatCount = 1
+//    objectAnimator.repeatMode = ValueAnimator.REVERSE
+//
+//// 3
+//    objectAnimator.duration = BaseAnimationActivity.Companion.DEFAULT_ANIMATION_DURATION
+//    objectAnimator.start()
 
     private fun animateMainButton() {
 
