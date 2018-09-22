@@ -1,4 +1,4 @@
-package com.nodecoyote.commandtower
+package com.nodecoyote.commandtower.fragments
 
 import android.os.Build
 import android.os.Bundle
@@ -13,6 +13,8 @@ import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.nodecoyote.commandtower.PlayerService
+import com.nodecoyote.commandtower.R
 import kotlinx.android.synthetic.main.cell_avatar.view.*
 import kotlinx.android.synthetic.main.fragment_create_player.*
 
@@ -78,54 +80,35 @@ class CreatePlayerAdapter(avatars: Array<String>): RecyclerView.Adapter<ChooseAv
     override fun onBindViewHolder(holder: ChooseAvatarViewHolder, position: Int) {
         val chosen = false
         imageLoader(holder.icon, position, chosen)
-
         holder.bindView(mAvatars[position])
     }
 
 }
 
-class ChooseAvatarViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+class ChooseAvatarViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), PlayerService{
     val icon: ImageView = itemView.avatar_image_view
     private val title: TextView = itemView.avatar_title
 
     fun bindView(avatar: String){
         title.text = avatar
+        icon.setOnClickListener { playerService.addPlayer(avatar) }
     }
 }
 
-
-
-//enum class Avatar{
-//    Sword,
-//    Shield,
-//    Crown,
-//    Torch,
-//    Poison,
-//    Book,
-//    Hammer,
-//    Goggles,
-//    Scepter,
-//    Axe,
-//    Ring,
-//    Crossbow
-//}
-
-//enum class Avatar(image: String){
-//    Sword("sword_avatar"),
-//    Shield("shield_avatar"),
-//    Crown("crown_avatar"),
-//    Torch("torch_avatar"),
-//    Poison("poison_avatar"),
-//    Book("book_avatar"),
-//    Hammer("hammer_avatar"),
-//    Goggles("pyromancer_avatar"),
-//    Scepter("scepter_avatar"),
-//    Axe("axe_avatar"),
-//    Ring("ring_avatar"),
-//    Crossbow("crossbow_avatar")
-//}
-
-
+enum class Avatar(image: String, position: Int){
+    Sword("sword_avatar", 0),
+    Shield("shield_avatar", 1),
+    Crown("crown_avatar", 2),
+    Torch("torch_avatar", 3),
+    Poison("poison_avatar", 4),
+    Book("book_avatar", 5),
+    Hammer("hammer_avatar", 6),
+    Goggles("pyromancer_avatar", 7),
+    Scepter("scepter_avatar",8),
+    Axe("axe_avatar",9),
+    Ring("ring_avatar",10),
+    Crossbow("crossbow_avatar",11)
+}
 
 fun imageLoader(icon: ImageView, position: Int, chosen: Boolean): Int {
 //TODO CLUNKY TRIM DOWN

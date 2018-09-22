@@ -1,4 +1,4 @@
-package com.nodecoyote.commandtower
+package com.nodecoyote.commandtower.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.nodecoyote.commandtower.Decoration
+import com.nodecoyote.commandtower.Navigation
+import com.nodecoyote.commandtower.R
 import kotlinx.android.synthetic.main.cell_format.view.*
 import kotlinx.android.synthetic.main.fragment_format.*
 

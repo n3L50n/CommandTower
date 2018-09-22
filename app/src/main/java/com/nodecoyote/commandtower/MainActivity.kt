@@ -2,19 +2,17 @@ package com.nodecoyote.commandtower
 
 import android.animation.ObjectAnimator
 import android.graphics.Point
-import android.graphics.PointF
-import android.os.Build
 import android.os.Bundle
 import android.support.animation.DynamicAnimation
 import android.support.animation.FlingAnimation
-import android.support.animation.SpringAnimation
-import android.support.animation.SpringForce
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.*
+import com.nodecoyote.commandtower.fragments.CreatePlayerFragment
+import com.nodecoyote.commandtower.fragments.FormatFragment
+import com.nodecoyote.commandtower.fragments.MainButtonFragment
+import com.nodecoyote.commandtower.fragments.MainButtonService
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_main_button.*
 
 class MainActivity : AppCompatActivity(), MainButtonService {
 

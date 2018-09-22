@@ -1,4 +1,4 @@
-package com.nodecoyote.commandtower
+package com.nodecoyote.commandtower.fragments
 
 import android.os.Build
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.ViewGroup
+import com.nodecoyote.commandtower.Navigation
+import com.nodecoyote.commandtower.R
 import io.reactivex.Flowable
 import io.reactivex.processors.BehaviorProcessor
 import kotlinx.android.synthetic.main.activity_main.*
@@ -101,7 +103,7 @@ class MainButtonFragment: Fragment(), MainButtonService {
             if (!activity.supportFragmentManager.fragments.contains(createPlayerFragment)) {
                 activity.supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.createPlayerContainer,    CreatePlayerFragment(), Navigation.CreatePlayer.name)
+                        .replace(R.id.createPlayerContainer, CreatePlayerFragment(), Navigation.CreatePlayer.name)
                         .commit()
                 createPlayerContainer.visibility = View.VISIBLE
             }
