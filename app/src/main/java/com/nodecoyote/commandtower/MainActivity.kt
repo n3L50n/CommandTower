@@ -29,19 +29,9 @@ class MainActivity : AppCompatActivity(), MainButtonService {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                supportFragmentManager.fragments.forEach {
-                    if (it.tag == Navigation.Formats.name) {
-                        supportFragmentManager.beginTransaction().remove(supportFragmentManager.findFragmentByTag(Navigation.Formats.name)).commit()
-                    }
-                }
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
-                supportFragmentManager.fragments.forEach {
-                    if (it.tag == Navigation.Formats.name) {
-                        supportFragmentManager.beginTransaction().remove(supportFragmentManager.findFragmentByTag(Navigation.Formats.name)).commit()
-                    }
-                }
                 return@OnNavigationItemSelectedListener true
             }
         }
