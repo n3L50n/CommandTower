@@ -1,5 +1,7 @@
 package com.nodecoyote.commandtower
 
+import android.arch.persistence.room.Entity
+
 
 data class Match (
         val id: String,
@@ -8,3 +10,8 @@ data class Match (
         val totalRounds: List<Round>,
         val players: List<Player>
 )
+
+@Entity
+class MatchEntity{
+
+}
