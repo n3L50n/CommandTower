@@ -14,4 +14,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <include
+        android:id="@+id/main_button_container"
+        layout="@layout/fragment_main_button" />
+
 </android.support.constraint.ConstraintLayout>
