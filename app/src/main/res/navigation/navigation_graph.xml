@@ -22,7 +22,13 @@
         android:id="@+id/createPlayerFragment"
         android:name="com.nodecoyote.commandtower.fragments.CreatePlayerFragment"
         android:label="CreatePlayerFragment"
-        tools:layout="@layout/fragment_create_player" />
+        tools:layout="@layout/fragment_create_player">
+
+        <action
+            android:id="@+id/action_createPlayerFragment_to_createPlayerExtrasFragment"
+            app:destination="@id/createPlayerExtrasFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/playerListFragment"
@@ -31,6 +37,16 @@
         <action
             android:id="@+id/action_playerList_to_createPlayerFragment"
             app:destination="@id/createPlayerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createPlayerExtrasFragment"
+        android:name="com.nodecoyote.commandtower.fragments.CreatePlayerExtrasFragment"
+        android:label="CreatePlayerExtrasFragment"
+        tools:layout="@layout/fragment_create_player_extras">
+        <action
+            android:id="@+id/action_createPlayerExtras_toPlayerListFragment"
+            app:destination="@id/playerListFragment" />
     </fragment>
 
 </navigation>

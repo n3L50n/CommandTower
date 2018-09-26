@@ -1,18 +1,15 @@
 package com.nodecoyote.commandtower.fragments
 
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.nodecoyote.commandtower.PlayerService
 import com.nodecoyote.commandtower.R
 import kotlinx.android.synthetic.main.cell_avatar.view.*
@@ -29,37 +26,12 @@ class CreatePlayerFragment: Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        create_player_container_layout.isSelected = true
 
-        Log.v("Create", "Creating Fragment")
-
-        if (Build.VERSION.SDK_INT >= 21) {
-            animate(itemView)
-        }
         context?.let {
             val avatars =  it.resources.getStringArray(R.array.avatar_icons)
             choose_avatar_recycler.layoutManager = GridLayoutManager(context, 3)
             choose_avatar_recycler.adapter = CreatePlayerAdapter(avatars)
-            create_player_container_layout.isSelected = false
         }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun animate(itemView: View){
-        val factor = 2
-        val finalRadius = Math.hypot(itemView.width.toDouble(), itemView.height.toDouble()).toInt()
-
-        val animator = ViewAnimationUtils.createCircularReveal (
-                itemView,
-                itemView.width / factor,
-                itemView.height / factor,
-                0f,
-                finalRadius.toFloat()
-        )
-                .setDuration(900)
-
-        animator.start()
-
     }
 
 }
@@ -85,13 +57,15 @@ class CreatePlayerAdapter(avatars: Array<String>): RecyclerView.Adapter<ChooseAv
 
 }
 
-class ChooseAvatarViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), PlayerService{
+class ChooseAvatarViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), PlayerService {
     val icon: ImageView = itemView.avatar_image_view
     private val title: TextView = itemView.avatar_title
 
     fun bindView(avatar: String){
         title.text = avatar
-        icon.setOnClickListener { playerService.addPlayer(avatar) }
+        icon.setOnClickListener {
+            playerService.addPlayer(avatar)
+        }
     }
 }
 
