@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/formatFragment">
+
+    <fragment
+        android:id="@+id/formatFragment"
+        android:name="com.nodecoyote.commandtower.fragments.FormatFragment"
+        android:label="FormatFragment"
+        tools:layout="@layout/fragment_format">
+        <action
+            android:id="@+id/action_formatFragment_to_playerListFragment"
+            app:destination="@id/playerListFragment" />
+        <action
+            android:id="@+id/action_formatFragment_to_createPlayerFragment"
+            app:destination="@id/createPlayerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createPlayerFragment"
+        android:name="com.nodecoyote.commandtower.fragments.CreatePlayerFragment"
+        android:label="CreatePlayerFragment"
+        tools:layout="@layout/fragment_create_player" />
+
+    <fragment
+        android:id="@+id/playerListFragment"
+        android:name="com.nodecoyote.commandtower.fragments.PlayerListFragment"
+        tools:layout="@layout/fragment_player_list">
+        <action
+            android:id="@+id/action_playerList_to_createPlayerFragment"
+            app:destination="@id/createPlayerFragment" />
+    </fragment>
 
 </navigation>

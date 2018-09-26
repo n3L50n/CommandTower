@@ -13,10 +13,6 @@ import com.nodecoyote.commandtower.R
 import kotlinx.android.synthetic.main.cell_format.view.*
 import kotlinx.android.synthetic.main.fragment_format.*
 
-private const val mTag = "FormatViews"
-
-enum class Formats { Classic, Brawl, Commander, Custom }
-
 class FormatFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -67,7 +63,6 @@ class FormatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.formatTitle.text = format
         itemView.formatItemContainer.setOnClickListener {
 
-            val fragment = PlayerListFragment()
             Toast.makeText(itemView.context, "Clicked $format", Toast.LENGTH_SHORT).show()
         }
     }
