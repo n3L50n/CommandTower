@@ -62,7 +62,6 @@ class FormatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bindView(format: String) {
         itemView.formatTitle.text = format
         itemView.formatItemContainer.setOnClickListener {
-
             Toast.makeText(itemView.context, "Clicked $format", Toast.LENGTH_SHORT).show()
         }
     }

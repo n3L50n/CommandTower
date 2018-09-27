@@ -11,11 +11,19 @@
         android:label="FormatFragment"
         tools:layout="@layout/fragment_format">
         <action
-            android:id="@+id/action_formatFragment_to_playerListFragment"
-            app:destination="@id/playerListFragment" />
+            android:id="@+id/playerListAction"
+            app:destination="@id/playerListFragment"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@animator/exit_to_right"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@animator/exit_to_right" />
         <action
-            android:id="@+id/action_formatFragment_to_createPlayerFragment"
-            app:destination="@id/createPlayerFragment" />
+            android:id="@+id/historyFragmentAction"
+            app:destination="@id/historyFragment"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@animator/exit_to_right"  />
     </fragment>
 
     <fragment
@@ -23,11 +31,9 @@
         android:name="com.nodecoyote.commandtower.fragments.CreatePlayerFragment"
         android:label="CreatePlayerFragment"
         tools:layout="@layout/fragment_create_player">
-
         <action
-            android:id="@+id/action_createPlayerFragment_to_createPlayerExtrasFragment"
+            android:id="@+id/createPlayerExtrasAction"
             app:destination="@id/createPlayerExtrasFragment" />
-
     </fragment>
 
     <fragment
@@ -35,8 +41,14 @@
         android:name="com.nodecoyote.commandtower.fragments.PlayerListFragment"
         tools:layout="@layout/fragment_player_list">
         <action
-            android:id="@+id/action_playerList_to_createPlayerFragment"
-            app:destination="@id/createPlayerFragment" />
+            android:id="@+id/createPlayerAction"
+            app:destination="@id/createPlayerFragment"/>
+        <action
+            android:id="@+id/historyFragmentAction"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/formatFragmentAction"
+            app:destination="@id/formatFragment" />
     </fragment>
 
     <fragment
@@ -45,7 +57,20 @@
         android:label="CreatePlayerExtrasFragment"
         tools:layout="@layout/fragment_create_player_extras">
         <action
-            android:id="@+id/action_createPlayerExtras_toPlayerListFragment"
+            android:id="@+id/playerListAction"
+            app:destination="@id/playerListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.nodecoyote.commandtower.fragments.HistoryFragment"
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history">
+        <action
+            android:id="@+id/formatFragmentAction"
+            app:destination="@id/formatFragment" />
+        <action
+            android:id="@+id/playerListAction"
             app:destination="@id/playerListFragment" />
     </fragment>
 

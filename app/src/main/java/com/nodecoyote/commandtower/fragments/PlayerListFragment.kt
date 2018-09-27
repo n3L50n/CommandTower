@@ -51,7 +51,7 @@ class PlayerListFragment : Fragment() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 animate(this.player_list_layout)
             }
-            this@PlayerListFragment.findNavController().navigate(R.id.createPlayerFragment)
+            this@PlayerListFragment.findNavController().navigate(R.id.createPlayerAction)
         }
     }
 

@@ -13,13 +13,13 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="529" />
-                            <option name="y" value="-295" />
+                            <option name="x" value="-716" />
+                            <option name="y" value="-565" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_createPlayerExtras_toPlayerListFragment">
+                            <entry key="playerListAction">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -34,13 +34,13 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="144" />
-                            <option name="y" value="-253" />
+                            <option name="x" value="-894" />
+                            <option name="y" value="-323" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_createPlayerFragment_to_createPlayerExtrasFragment">
+                            <entry key="createPlayerExtrasAction">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -55,18 +55,44 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-607" />
-                            <option name="y" value="168" />
+                            <option name="x" value="-1188" />
+                            <option name="y" value="454" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_formatFragment_to_createPlayerFragment">
+                            <entry key="historyFragmentAction">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_formatFragment_to_playerListFragment">
+                            <entry key="playerListAction">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="historyFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-648" />
+                            <option name="y" value="448" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="formatFragmentAction">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="playerListAction">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -81,13 +107,23 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-72" />
-                            <option name="y" value="404" />
+                            <option name="x" value="-936" />
+                            <option name="y" value="455" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_playerList_to_createPlayerFragment">
+                            <entry key="createPlayerAction">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="formatFragmentAction">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="historyFragmentAction">
                               <value>
                                 <LayoutPositions />
                               </value>

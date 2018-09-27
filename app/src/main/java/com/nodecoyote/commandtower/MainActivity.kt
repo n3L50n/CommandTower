@@ -14,13 +14,13 @@ class MainActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.formatFragment -> {
+            R.id.formatFragmentAction -> {
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.playerListFragment -> {
+            R.id.playerListAction -> {
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.createPlayerFragment-> {
+            R.id.historyFragmentAction-> {
                 return@OnNavigationItemSelectedListener true
             }
         }

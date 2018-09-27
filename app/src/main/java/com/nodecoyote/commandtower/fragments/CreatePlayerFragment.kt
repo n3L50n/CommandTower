@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.findNavController
 import com.nodecoyote.commandtower.PlayerService
 import com.nodecoyote.commandtower.R
 import kotlinx.android.synthetic.main.cell_avatar.view.*

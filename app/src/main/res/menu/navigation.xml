@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/formatFragment"
+        android:id="@+id/formatFragmentAction"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:title="@string/title_game" />
 
     <item
-        android:id="@+id/playerListFragment"
+        android:id="@+id/playerListAction"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:title="@string/title_friends" />
 
     <item
-        android:id="@+id/createPlayerFragment"
+        android:id="@+id/historyFragmentAction"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="@string/title_history" />
 
 </menu>
