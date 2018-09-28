@@ -19,4 +19,8 @@
         android:id="@+id/main_button_container"
         layout="@layout/fragment_main_button" />
 
+    <include
+        android:id="@+id/secondary_button_container"
+        layout="@layout/fragment_secondary_button" />
+
 </android.support.constraint.ConstraintLayout>

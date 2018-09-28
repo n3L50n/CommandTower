@@ -4,6 +4,6 @@
     <corners android:radius="10dp" />
     <solid android:color="@android:color/white" />
     <stroke
-        android:color="@color/create_player_color"
+        android:color="@color/main_button_color"
         android:width="2dp" />
 </shape>

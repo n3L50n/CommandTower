@@ -45,10 +45,19 @@
             app:destination="@id/createPlayerFragment"/>
         <action
             android:id="@+id/historyFragmentAction"
-            app:destination="@id/historyFragment" />
+            app:destination="@id/historyFragment"
+
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@animator/exit_to_right"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@animator/exit_to_right"/>
         <action
             android:id="@+id/formatFragmentAction"
-            app:destination="@id/formatFragment" />
+            app:destination="@id/formatFragment"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@animator/exit_to_right"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@animator/exit_to_right"/>
     </fragment>
 
     <fragment
@@ -68,10 +77,18 @@
         tools:layout="@layout/fragment_history">
         <action
             android:id="@+id/formatFragmentAction"
-            app:destination="@id/formatFragment" />
+            app:destination="@id/formatFragment"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@animator/exit_to_right"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@animator/exit_to_right"/>
         <action
             android:id="@+id/playerListAction"
-            app:destination="@id/playerListFragment" />
+            app:destination="@id/playerListFragment"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@animator/exit_to_right"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@animator/exit_to_right"/>
     </fragment>
 
 </navigation>

@@ -24,6 +24,8 @@ import android.animation.AnimatorListenerAdapter
 
 class PlayerListFragment : Fragment() {
 
+    private val players = listOf("node coyote", "khecks", "dino king")
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (container == null) {
             return null
@@ -36,53 +38,21 @@ class PlayerListFragment : Fragment() {
         setUpRecycler()
         animateMainButton()
         setUpMainButton()
+        animateSecondaryButton()
     }
 
     private fun setUpRecycler() {
         val playerRecyclerView: RecyclerView = playerRecyclerView
         val playerGridLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-        val playerAdapter = PlayerAdapter()
+        val playerAdapter = PlayerAdapter(players)
         playerRecyclerView.layoutManager = playerGridLayoutManager
         playerRecyclerView.adapter = playerAdapter
     }
 
     private fun setUpMainButton() {
         main_button_container.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                animate(this.player_list_layout)
-            }
             this@PlayerListFragment.findNavController().navigate(R.id.createPlayerAction)
         }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun animate(itemView: View){
-        val factor = 2
-        val finalRadius = Math.hypot(itemView.width.toDouble(), itemView.height.toDouble()).toInt()
-
-        val animator = ViewAnimationUtils.createCircularReveal (
-                itemView,
-                itemView.width / factor,
-                itemView.height / factor,
-                0f,
-                finalRadius.toFloat()
-        )
-                .setDuration(1200)
-
-        animator.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                itemView.visibility = View.GONE
-            }
-        })
-
-        animator.start()
-
-        val valueAnimator = ValueAnimator()
-        valueAnimator.setIntValues(R.color.create_player_color, android.R.color.white)
-        val colorAnimator = ArgbEvaluatorCompat.getInstance()
-        valueAnimator.setEvaluator(colorAnimator)
-        valueAnimator.duration = 1200
-        valueAnimator.start()
     }
 
     private fun animateMainButton() {
@@ -114,11 +84,40 @@ class PlayerListFragment : Fragment() {
         xAnimator.start()
     }
 
+    private fun animateSecondaryButton() {
+
+        val point = Point()
+        activity?.windowManager?.defaultDisplay?.getSize(point)
+        val screenWidth = point.x.toFloat()
+        val screenHeight = point.y.toFloat()
+
+        val xAnimator = ObjectAnimator.ofFloat(
+                secondary_button_container,
+                "translationX",
+                screenWidth,
+                screenWidth - (screenWidth/2f)
+
+        )
+
+        val yAnimator = ObjectAnimator.ofFloat(
+                secondary_button_container,
+                "translationY",
+                screenHeight,
+                screenHeight - (screenHeight/2)
+        )
+
+        yAnimator.duration = 1200
+        yAnimator.start()
+
+        xAnimator.duration = 1200
+        xAnimator.start()
+    }
+
 }
 
-class PlayerAdapter : RecyclerView.Adapter<PlayerViewHolder>() {
+class PlayerAdapter(private val players: List<String>): RecyclerView.Adapter<PlayerViewHolder>() {
 
-    private val players = listOf("node coyote", "khecks", "dino king")
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cell_player, parent, false)
