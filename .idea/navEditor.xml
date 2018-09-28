@@ -13,34 +13,13 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-716" />
-                            <option name="y" value="-565" />
+                            <option name="x" value="-870" />
+                            <option name="y" value="-665" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
                             <entry key="playerListAction">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="createPlayerFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-894" />
-                            <option name="y" value="-323" />
-                          </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="createPlayerExtrasAction">
                               <value>
                                 <LayoutPositions />
                               </value>

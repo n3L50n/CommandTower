@@ -2,13 +2,20 @@ package com.nodecoyote.commandtower.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.nodecoyote.commandtower.PlayerService
 import com.nodecoyote.commandtower.R
 import kotlinx.android.synthetic.main.cell_avatar.view.*
@@ -25,17 +32,16 @@ class CreatePlayerFragment: Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-
-        context?.let {
-            val avatars =  it.resources.getStringArray(R.array.avatar_icons)
+        activity?.let { a ->
+            val avatars =  a.resources.getStringArray(R.array.avatar_icons)
             choose_avatar_recycler.layoutManager = GridLayoutManager(context, 3)
-            choose_avatar_recycler.adapter = CreatePlayerAdapter(avatars)
+            choose_avatar_recycler.adapter = CreatePlayerAdapter(avatars, a.supportFragmentManager)
         }
     }
 
 }
 
-class CreatePlayerAdapter(avatars: Array<String>): RecyclerView.Adapter<ChooseAvatarViewHolder>(){
+class CreatePlayerAdapter(avatars: Array<String>, private val fm: FragmentManager): RecyclerView.Adapter<ChooseAvatarViewHolder>(){
 
     private val mAvatars = avatars
 
@@ -51,7 +57,7 @@ class CreatePlayerAdapter(avatars: Array<String>): RecyclerView.Adapter<ChooseAv
     override fun onBindViewHolder(holder: ChooseAvatarViewHolder, position: Int) {
         val chosen = false
         imageLoader(holder.icon, position, chosen)
-        holder.bindView(mAvatars[position])
+        holder.bindView(mAvatars[position], fm)
     }
 
 }
@@ -60,10 +66,17 @@ class ChooseAvatarViewHolder(itemView: View): RecyclerView.ViewHolder(itemView),
     val icon: ImageView = itemView.avatar_image_view
     private val title: TextView = itemView.avatar_title
 
-    fun bindView(avatar: String){
+    fun bindView(avatar: String, fm: FragmentManager){
         title.text = avatar
+
         icon.setOnClickListener {
-            playerService.addPlayer(avatar)
+            for (fragment in fm.fragments) {
+                if (fragment is NavHostFragment) {
+//                    var bundle = Bundle()
+//                    bundle.putString()
+                    fragment.findNavController().navigate(R.id.createPlayerExtrasFragment)
+                }
+            }
         }
     }
 }

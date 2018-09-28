@@ -1,25 +1,18 @@
 package com.nodecoyote.commandtower.fragments
 
 import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.graphics.Point
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
-import android.support.design.animation.ArgbEvaluatorCompat
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.nodecoyote.commandtower.R
 import kotlinx.android.synthetic.main.cell_player.view.*
 import kotlinx.android.synthetic.main.fragment_player_list.*
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 
 
 class PlayerListFragment : Fragment() {
@@ -36,9 +29,9 @@ class PlayerListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
-        animateMainButton()
+        animateButton(main_button_container, 1.5f, 3.0f)
         setUpMainButton()
-        animateSecondaryButton()
+        animateButton(secondary_button_container, 2f, 2f)
     }
 
     private fun setUpRecycler() {
@@ -55,7 +48,7 @@ class PlayerListFragment : Fragment() {
         }
     }
 
-    private fun animateMainButton() {
+    private fun animateButton(container: View, x: Float, y: Float) {
 
         val point = Point()
         activity?.windowManager?.defaultDisplay?.getSize(point)
@@ -63,47 +56,18 @@ class PlayerListFragment : Fragment() {
         val screenHeight = point.y.toFloat()
 
         val xAnimator = ObjectAnimator.ofFloat(
-                main_button_container,
+                container,
                 "translationX",
                 screenWidth,
-                screenWidth - (screenWidth/1.5f)
+                screenWidth - (screenWidth/x)
 
         )
 
         val yAnimator = ObjectAnimator.ofFloat(
-                main_button_container,
+                container,
                 "translationY",
                 screenHeight,
-                screenHeight - (screenHeight/3)
-        )
-
-        yAnimator.duration = 1200
-        yAnimator.start()
-
-        xAnimator.duration = 1200
-        xAnimator.start()
-    }
-
-    private fun animateSecondaryButton() {
-
-        val point = Point()
-        activity?.windowManager?.defaultDisplay?.getSize(point)
-        val screenWidth = point.x.toFloat()
-        val screenHeight = point.y.toFloat()
-
-        val xAnimator = ObjectAnimator.ofFloat(
-                secondary_button_container,
-                "translationX",
-                screenWidth,
-                screenWidth - (screenWidth/2f)
-
-        )
-
-        val yAnimator = ObjectAnimator.ofFloat(
-                secondary_button_container,
-                "translationY",
-                screenHeight,
-                screenHeight - (screenHeight/2)
+                screenHeight - (screenHeight/y)
         )
 
         yAnimator.duration = 1200

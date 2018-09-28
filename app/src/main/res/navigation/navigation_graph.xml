@@ -27,16 +27,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/createPlayerFragment"
-        android:name="com.nodecoyote.commandtower.fragments.CreatePlayerFragment"
-        android:label="CreatePlayerFragment"
-        tools:layout="@layout/fragment_create_player">
-        <action
-            android:id="@+id/createPlayerExtrasAction"
-            app:destination="@id/createPlayerExtrasFragment" />
-    </fragment>
-
-    <fragment
         android:id="@+id/playerListFragment"
         android:name="com.nodecoyote.commandtower.fragments.PlayerListFragment"
         tools:layout="@layout/fragment_player_list">
@@ -46,7 +36,6 @@
         <action
             android:id="@+id/historyFragmentAction"
             app:destination="@id/historyFragment"
-
             app:enterAnim="@anim/enter_from_left"
             app:exitAnim="@animator/exit_to_right"
             app:popEnterAnim="@anim/enter_from_left"
@@ -61,9 +50,17 @@
     </fragment>
 
     <fragment
+        android:id="@+id/createPlayerFragment"
+        android:name="com.nodecoyote.commandtower.fragments.CreatePlayerFragment"
+        tools:layout="@layout/fragment_create_player">
+        <action
+            android:id="@+id/createPlayerExtrasAction"
+            app:destination="@id/createPlayerExtrasFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/createPlayerExtrasFragment"
         android:name="com.nodecoyote.commandtower.fragments.CreatePlayerExtrasFragment"
-        android:label="CreatePlayerExtrasFragment"
         tools:layout="@layout/fragment_create_player_extras">
         <action
             android:id="@+id/playerListAction"

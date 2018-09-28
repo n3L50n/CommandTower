@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
 
     private val _tag = "MainActivity"
 
+    override fun onSupportNavigateUp() = findNavController(R.id.nav_host_fragment).navigateUp()
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.formatFragmentAction -> {
