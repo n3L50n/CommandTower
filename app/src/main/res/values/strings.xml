@@ -5,6 +5,17 @@
     <string name="title_history">History</string>
 
     <string name="avatar_description">Choose an Avatar to get Started</string>
+    <string name="enter_name_description">Enter Player Name:</string>
+    <string name="enter_name_hint">Teferi, Archmage</string>
+    <string name="add_extras_description">Enable Extras at any time:</string>
+    <string name="flip_coin">Flip Coin</string>
+    <string name="energy">Energy</string>
+    <string name="poison">Poison</string>
+    <string name="experience">Experience</string>
+    <string name="command_tally">Commander Tally</string>
+    <string name="player_border_color">Color</string>
+    <string name="remove_player">Remove Player</string>
+
     <string-array name="avatar_icons">
         <item>Sword</item>
         <item>Shield</item>
@@ -19,7 +30,6 @@
         <item>Ring</item>
         <item>Crossbow</item>
     </string-array>
-
 
     <!--Main Button -->
     <string name="create">Create</string>

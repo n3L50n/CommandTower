@@ -5,17 +5,14 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
+import com.nodecoyote.commandtower.Keys
 import com.nodecoyote.commandtower.PlayerService
 import com.nodecoyote.commandtower.R
 import kotlinx.android.synthetic.main.cell_avatar.view.*
@@ -72,28 +69,13 @@ class ChooseAvatarViewHolder(itemView: View): RecyclerView.ViewHolder(itemView),
         icon.setOnClickListener {
             for (fragment in fm.fragments) {
                 if (fragment is NavHostFragment) {
-//                    var bundle = Bundle()
-//                    bundle.putString()
-                    fragment.findNavController().navigate(R.id.createPlayerExtrasFragment)
+                    val bundle = Bundle()
+                    bundle.putInt(Keys.AvatarSelectedIconPosition, adapterPosition)
+                    fragment.findNavController().navigate(R.id.createPlayerExtrasFragment, bundle)
                 }
             }
         }
     }
-}
-
-enum class Avatar(image: String, position: Int){
-    Sword("sword_avatar", 0),
-    Shield("shield_avatar", 1),
-    Crown("crown_avatar", 2),
-    Torch("torch_avatar", 3),
-    Poison("poison_avatar", 4),
-    Book("book_avatar", 5),
-    Hammer("hammer_avatar", 6),
-    Goggles("pyromancer_avatar", 7),
-    Scepter("scepter_avatar",8),
-    Axe("axe_avatar",9),
-    Ring("ring_avatar",10),
-    Crossbow("crossbow_avatar",11)
 }
 
 fun imageLoader(icon: ImageView, position: Int, chosen: Boolean): Int {

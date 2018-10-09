@@ -1,20 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/create_player_background_selector"
-    android:layout_marginEnd="16dp"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_marginStart="16dp"
     android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
     android:layout_marginBottom="56dp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:background="@drawable/create_player_background_selector">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/extras_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="2dp"
+        android:background="#eee"
+        app:layout_constraintBottom_toTopOf="@+id/enter_name_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_player_extras_avatar">
+
+        <TextView
+            android:id="@+id/add_extras_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="start"
+            android:text="@string/add_extras_description"
+            android:textColor="#777"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/extras_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#999"
+            app:layout_constraintTop_toBottomOf="@+id/add_extras_description" />
+
+        <ImageView
+            android:id="@+id/energy_image_view"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/poison_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/extras_divider"
+            android:src="@drawable/energy_logo" />
+
+        <TextView
+            android:id="@+id/energy_description"
+            android:text="@string/energy"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/energy_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/energy_image_view"
+            app:layout_constraintEnd_toEndOf="@id/energy_image_view"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/poison_image_view"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toEndOf="@+id/energy_image_view"
+            app:layout_constraintEnd_toStartOf="@id/experience_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/extras_divider"
+            android:src="@drawable/enable_poison_counters" />
+
+        <TextView
+            android:id="@+id/poison_description"
+            android:text="@string/poison"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/poison_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/poison_image_view"
+            app:layout_constraintEnd_toEndOf="@id/poison_image_view"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/experience_image_view"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/poison_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/extras_divider"
+            android:src="@drawable/experience_counter" />
+
+        <TextView
+            android:id="@+id/experience_description"
+            android:text="@string/experience"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/experience_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/experience_image_view"
+            app:layout_constraintEnd_toEndOf="@id/experience_image_view"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/command_tally_image_view"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/color_image_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/energy_description"
+            android:src="@drawable/commander_mode" />
+
+        <TextView
+            android:text="@string/command_tally"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/command_tally_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/command_tally_image_view"
+            app:layout_constraintEnd_toEndOf="@id/command_tally_image_view"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/color_image_view"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@color/main_button_color"
+            app:layout_constraintEnd_toStartOf="@id/remove_player_image_view"
+            app:layout_constraintStart_toEndOf="@id/command_tally_image_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/poison_description" />
+
+        <TextView
+            android:text="@string/player_border_color"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/color_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/color_image_view"
+            app:layout_constraintEnd_toEndOf="@id/color_image_view"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/remove_player_image_view"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:src="@drawable/empty_graveyard"
+            app:layout_constraintStart_toEndOf="@id/color_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/experience_description" />
+
+        <TextView
+            android:text="@string/remove_player"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/remove_player_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/remove_player_image_view"
+            app:layout_constraintEnd_toEndOf="@id/remove_player_image_view"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </android.support.constraint.ConstraintLayout>
+
 
     <ImageView
-        android:src="@drawable/pyromancer_avatar"
         android:id="@+id/create_player_extras_avatar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/pyromancer_avatar"
+        app:layout_constraintBottom_toTopOf="@+id/extras_container"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/enter_name_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/enter_name_description"
+        app:layout_constraintBottom_toTopOf="@+id/enter_name_container"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/enter_name_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/enter_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tool:text="Percival Frederick Muselheim Kowalkski DeRolo the third" />
+
+        <EditText
+            android:id="@+id/enter_name_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:ellipsize="end"
+            android:hint="@string/enter_name_hint"
+            android:inputType="textCapWords"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
