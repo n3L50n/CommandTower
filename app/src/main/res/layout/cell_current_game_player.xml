@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@drawable/create_player_background_light">
+
+    <ImageView
+        android:id="@+id/current_player_avatar"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tally_container"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:src="@drawable/shield_avatar" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_margin="8dp"
+        android:id="@+id/tally_container"
+        android:background="#fdfdfd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/current_player_avatar"
+        app:layout_constraintEnd_toStartOf="@id/current_player_life"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/current_player_tally_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/current_player_tally"
+            android:src="@drawable/commander_mode"
+            android:layout_width="36dp"
+            android:layout_height="36dp" />
+        <TextView
+            android:id="@+id/current_player_tally"
+            android:gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/current_player_tally_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tool:text="Tally: +0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <View
+        android:id="@+id/current_player_plus_life"
+        app:layout_constraintTop_toTopOf="@+id/current_player_life"
+        app:layout_constraintStart_toStartOf="@+id/current_player_life"
+        app:layout_constraintEnd_toEndOf="@+id/current_player_life"
+        app:layout_constraintBottom_toTopOf="@+id/current_player_minus_life"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <View
+        android:id="@+id/current_player_minus_life"
+        app:layout_constraintTop_toBottomOf="@+id/current_player_plus_life"
+        app:layout_constraintBottom_toBottomOf="@+id/current_player_life"
+        app:layout_constraintStart_toStartOf="@+id/current_player_life"
+        app:layout_constraintEnd_toEndOf="@+id/current_player_life"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/current_player_life"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="48sp"
+        app:layout_constraintStart_toEndOf="@id/tally_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:text="125" />
+
+    <TextView
+        android:id="@+id/current_player_name"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_player_avatar"
+        tool:text="Travis Willingham" />
+
+</android.support.constraint.ConstraintLayout>

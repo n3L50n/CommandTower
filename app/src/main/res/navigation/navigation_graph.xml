@@ -24,6 +24,9 @@
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@animator/exit_to_right"  />
+        <action
+            android:id="@+id/currentGameAction"
+            app:destination="@id/currentGameFragment" />
     </fragment>
 
     <fragment
@@ -47,6 +50,9 @@
             app:exitAnim="@animator/exit_to_right"
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@animator/exit_to_right"/>
+        <action
+            android:id="@+id/currentGameAction"
+            app:destination="@id/currentGameFragment" />
     </fragment>
 
     <fragment
@@ -65,6 +71,9 @@
         <action
             android:id="@+id/playerListAction"
             app:destination="@id/playerListFragment" />
+        <action
+            android:id="@+id/currentGameAction"
+            app:destination="@id/currentGameFragment" />
     </fragment>
 
     <fragment
@@ -86,6 +95,24 @@
             app:exitAnim="@animator/exit_to_right"
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@animator/exit_to_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/currentGameFragment"
+        android:name="com.nodecoyote.commandtower.fragments.CurrentGameFragment"
+        android:label="fragment_current_game"
+        tools:layout="@layout/fragment_current_game">
+
+
+        <action
+            android:id="@+id/createPlayerExtrasAction"
+            app:destination="@id/createPlayerExtrasFragment" />
+        <action
+            android:id="@+id/playerListAction"
+            app:destination="@id/playerListFragment" />
+        <action
+            android:id="@+id/formatFragmentAction"
+            app:destination="@id/formatFragment" />
     </fragment>
 
 </navigation>

@@ -29,9 +29,10 @@ class PlayerListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
-        animateButton(main_button_container, 1.5f, 3.0f)
+        animateButton(main_button_container, 1.8f)
         setUpMainButton()
-        animateButton(secondary_button_container, 2f, 2f)
+        animateButton(secondary_button_container, 2f)
+        setUpSecondaryButton()
     }
 
     private fun setUpRecycler() {
@@ -48,12 +49,17 @@ class PlayerListFragment : Fragment() {
         }
     }
 
-    private fun animateButton(container: View, x: Float, y: Float) {
+    private fun setUpSecondaryButton() {
+        secondary_button_container.setOnClickListener {
+            this@PlayerListFragment.findNavController().navigate(R.id.currentGameAction)
+        }
+    }
+
+    private fun animateButton(container: View, x: Float) {
 
         val point = Point()
         activity?.windowManager?.defaultDisplay?.getSize(point)
         val screenWidth = point.x.toFloat()
-        val screenHeight = point.y.toFloat()
 
         val xAnimator = ObjectAnimator.ofFloat(
                 container,
@@ -62,16 +68,6 @@ class PlayerListFragment : Fragment() {
                 screenWidth - (screenWidth/x)
 
         )
-
-        val yAnimator = ObjectAnimator.ofFloat(
-                container,
-                "translationY",
-                screenHeight,
-                screenHeight - (screenHeight/y)
-        )
-
-        yAnimator.duration = 1200
-        yAnimator.start()
 
         xAnimator.duration = 1200
         xAnimator.start()

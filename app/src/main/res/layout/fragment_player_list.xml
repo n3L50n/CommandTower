@@ -15,12 +15,30 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/main_button_container"
-        layout="@layout/fragment_main_button" />
+    <android.support.constraint.ConstraintLayout
+        app:layout_constraintBottom_toTopOf="@+id/start_game_button_container"
+        android:layout_marginBottom="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/secondary_button_container"
-        layout="@layout/fragment_secondary_button" />
+        <include
+            android:id="@+id/main_button_container"
+            layout="@layout/fragment_main_button" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/start_game_button_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/secondary_button_container"
+            layout="@layout/fragment_secondary_button" />
+
+    </android.support.constraint.ConstraintLayout>
+
 
 </android.support.constraint.ConstraintLayout>

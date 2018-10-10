@@ -8,6 +8,7 @@ import android.arch.persistence.room.PrimaryKey
 data class Player (
         val id: Int,
         val name: String,
+        val previousNames: List<String>,
         val avatar: String,
         val auth: String?,
         val life: Int,
@@ -31,7 +32,7 @@ data class Player (
         val opponents: List<String>,
         val friends: List<String>,
         val decks: List<Deck>,
-        val currentDeck: Deck,
+        val currentDeck: Deck?,
         val currentRound: String,
         val currentMatch: String,
         val currentEvent: String,
