@@ -35,7 +35,7 @@ class CurrentGameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        current_game_recycler.layoutManager = GridLayoutManager(context, 2)
+        current_game_recycler.layoutManager = LinearLayoutManager(context)
         current_game_recycler.adapter = CurrentGameAdapter(viewModel.players())
     }
 
@@ -60,6 +60,7 @@ class CurrentGameAdapter(private val players: List<Player>) : RecyclerView.Adapt
 
 class CurrentPlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var life = "30"
+    var tally = "0"
     fun bindView(player: Player) {
         itemView.current_player_life.text = life
         itemView.current_player_name.text = player.name
@@ -75,6 +76,26 @@ class CurrentPlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
             newLife -= 1
             life = "$newLife"
             itemView.current_player_life.text = life
+        }
+
+        val tallyString = "Tally +$tally"
+        itemView.current_player_tally.text = tallyString
+
+        itemView.current_player_tally.setOnClickListener {
+            var newTally = tally.toInt()
+            newTally += 2
+            tally = "$newTally"
+            val newTallyString = "Tally +$tally"
+            itemView.current_player_tally.text = newTallyString
+        }
+
+        itemView.current_player_tally_image.setOnLongClickListener {
+            var newTally = tally.toInt()
+            newTally -= 2
+            tally = "$newTally"
+            val newTallyString = "Tally +$tally"
+            itemView.current_player_tally.text = newTallyString
+            true
         }
     }
 
